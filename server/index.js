@@ -22,7 +22,7 @@ app.post("/ask-ai", async (req, res) => {
     console.log("AI request received");
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.0-flash",
+      model: "gemini-2.5-flash",
     });
 
 const prompt = `
