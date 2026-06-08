@@ -67,11 +67,11 @@ export default function App() {
   localStorage.getItem("budget") || ""
   );
 
-  const askAI = async () => {
+const askAI = async () => {
   setLoadingAI(true);
 
   try {
-    fetch("https://currencio-ai.onrender.com/ask-ai", {
+    const res = await fetch("http://localhost:5000/ask-ai", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -84,9 +84,15 @@ export default function App() {
     });
 
     const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "AI request failed");
+    }
+
     setAiResponse(data.answer);
   } catch (err) {
-    console.error(err);
+    console.error("AI Error:", err);
+    setAiResponse("❌ " + err.message);
   } finally {
     setLoadingAI(false);
   }

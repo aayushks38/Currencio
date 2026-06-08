@@ -4,20 +4,24 @@ import dotenv from "dotenv";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 dotenv.config();
-console.log("API KEY EXISTS:", !!process.env.GEMINI_API_KEY);
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+console.log(process.env.GEMINI_API_KEY);
 const genAI = new GoogleGenerativeAI(
   process.env.GEMINI_API_KEY
 );
 
 app.post("/ask-ai", async (req, res) => {
   try {
-    const { expenses, budget, question } = req.body;
+    const {
+      expenses,
+      budget = 0,
+      question,
+    } = req.body;
 
     console.log("AI request received");
 
@@ -42,9 +46,6 @@ Be concise.
 Use simple language.
 Maximum 100 words.
 `;
-
-console.log("EXPENSES:", expenses);
-console.log("PROMPT:", prompt);
 
       let result;
 
@@ -74,7 +75,7 @@ console.log("PROMPT:", prompt);
   console.error(error.stack);
 
   res.status(500).json({
-    error: error.message,
+    error: "AI is temporarily unavailable. Please try again later.",
   });
 }
 });
