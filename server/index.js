@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 dotenv.config();
+console.log("API KEY EXISTS:", !!process.env.GEMINI_API_KEY);
 
 const app = express();
 
@@ -45,13 +46,32 @@ Maximum 100 words.
 console.log("EXPENSES:", expenses);
 console.log("PROMPT:", prompt);
 
-    const result = await model.generateContent(prompt);
+      let result;
+
+    for (let i = 0; i < 3; i++) {
+      try {
+        result = await model.generateContent(prompt);
+        break;
+      } catch (err) {
+        if (err.status === 503 && i < 2) {
+          console.log("Gemini busy, retrying...");
+          await new Promise((resolve) =>
+            setTimeout(resolve, 2000)
+          );
+          continue;
+        }
+        throw err;
+      }
+    }
 
     res.json({
       answer: result.response.text(),
     });
   } catch (error) {
-  console.error("FULL ERROR:", error);
+  console.error("FULL ERROR:");
+  console.error(error);
+  console.error(error.message);
+  console.error(error.stack);
 
   res.status(500).json({
     error: error.message,
