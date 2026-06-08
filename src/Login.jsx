@@ -43,7 +43,7 @@ export default function Login({ setUser }) {
   const trail = (e) => {
     const now = Date.now();
 
-    if (now - lastSpawn < 300) return;
+    if (now - lastSpawn < 150) return;
 
     lastSpawn = now;
 
@@ -111,23 +111,57 @@ export default function Login({ setUser }) {
   };
 
   return (
-    <div className="bg">
+  <div className="login-layout">
+    <div className="hero-panel">
       <div className="currency-layer"></div>
 
-      <div className="login-card">
-        <div className="brand">
-          <span className="brand-tag">
-            PERSONAL FINANCE
-          </span>
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="hero-video"
+      >
+        <source src="/finance.mp4" type="video/mp4" />
+      </video>
 
-          <h1 className="brand-title">
-            CURRENCIO
-          </h1>
+      <div className="hero-overlay">
+        <span className="hero-badge">
+          AI POWERED PERSONAL FINANCE
+        </span>
 
-          <p className="brand-subtitle">
-            Track. Analyze. Grow.
-          </p>
+        <h1 className="hero-heading">
+          Your No.1 Financial
+          Companion
+        </h1>
+
+        <p className="hero-copy">
+          Track expenses. Manage budgets.
+          Understand spending habits.
+          Build a stronger financial future.
+        </p>
+
+        <div className="hero-tags">
+          <span>Budget Tracking</span>
+          <span>Expense Analytics</span>
+          <span>Gemini AI</span>
         </div>
+      </div>
+    </div>
+
+    <div className="auth-panel">
+      <div className="auth-content">
+        <span className="brand-tag">
+          PERSONAL FINANCE
+        </span>
+
+        <h1 className="brand-title">
+          CURRENCIO
+        </h1>
+
+        <p className="brand-subtitle">
+          Welcome back.
+        </p>
 
         <input
           className="input"
@@ -150,17 +184,18 @@ export default function Login({ setUser }) {
             className="pro-btn"
             onClick={login}
           >
-            Login
+            Continue
           </button>
 
           <button
             className="success-btn"
             onClick={signup}
           >
-            Signup
+            Create Account
           </button>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }

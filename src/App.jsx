@@ -59,11 +59,13 @@ export default function App() {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState(
     new Date().toISOString().slice(0, 7)
   );
-  const [budget, setBudget] = useState("");
+  const [budget, setBudget] = useState(
+  localStorage.getItem("budget") || ""
+  );
 
   const askAI = async () => {
   setLoadingAI(true);
@@ -99,6 +101,10 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("theme", darkMode ? "dark" : "light");
   }, [darkMode]);
+
+  useEffect(() => {
+  localStorage.setItem("budget", budget);
+  }, [budget]);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (u) => {
@@ -589,25 +595,54 @@ export default function App() {
           </div>
         </section>
       </div>
-      <section className="ai-card">
-          <h2>🤖 Currencio AI</h2>
+          <section className="ai-card">
+            <h2>🤖 Currencio AI</h2>
 
-          <input
-            className="input"
-            type="text"
-            placeholder="Ask about your budget..."
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-          />
+            <div className="ai-suggestions">
+              <button
+                type="button"
+                onClick={() => setQuestion("Am I overspending?")}
+              >
+                Am I overspending?
+              </button>
 
-          <button
-            className="pro-btn"
-            onClick={askAI}
-            disabled={loadingAI}
-          >
-            {loadingAI ? "🤖 Thinking..." : "Ask AI"}
-          </button>
-          {loadingAI && <p>Thinking...</p>}
+              <button
+                type="button"
+                onClick={() => setQuestion("Analyze my expenses")}
+              >
+                Analyze my expenses
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setQuestion("How can I save more?")}
+              >
+                How can I save more?
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setQuestion("Create a budget plan")}
+              >
+                Create a budget plan
+              </button>
+            </div>
+
+            <input
+              className="input"
+              type="text"
+              placeholder="Ask about your budget..."
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+            />
+
+            <button
+              className="pro-btn"
+              onClick={askAI}
+              disabled={loadingAI}
+            >
+              {loadingAI ? "🤖 Thinking..." : "Ask AI"}
+            </button>
 
           {aiResponse && (
             <div className="ai-response">

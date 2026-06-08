@@ -18,8 +18,10 @@ app.post("/ask-ai", async (req, res) => {
   try {
     const { expenses, budget, question } = req.body;
 
+    console.log("AI request received");
+
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash",
+      model: "gemini-1.5-flash",
     });
 
 const prompt = `
@@ -37,7 +39,7 @@ Answer as a personal finance advisor.
 Keep answers under 4 bullet points.
 Be concise.
 Use simple language.
-Maximum 80 words.
+Maximum 100 words.
 `;
 
 console.log("EXPENSES:", expenses);
