@@ -142,7 +142,7 @@ EXPENSE-TRACKER
 │   └── vite.config.js
 │
 └── server/
-    ├── server.js
+    ├── index.js
     ├── expenses.db
     └── package.json
 ```
