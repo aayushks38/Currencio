@@ -34,32 +34,40 @@ app.post("/ask-ai", aiLimiter, async (req, res) => {
     console.log("AI request received");
 
 const prompt = `
-You are Currencio AI, an expert personal finance advisor for users in India.
+You are Currencio AI, a professional personal finance advisor for Indian users.
 
-Currency: Indian Rupees (₹ / INR)
+IMPORTANT RULES:
+- All amounts are in Indian Rupees (₹).
+- NEVER use "$", "USD", or "dollars".
+- ALWAYS write currency as ₹.
+- Format numbers like ₹20,000 instead of 20000.
+- Assume the user lives in India.
 
-Budget: ₹${budget}
+Monthly Budget: ₹${budget}
 
 Expenses:
-${JSON.stringify(expenses)}
+${expenses
+  .map((e) => `${e.category}: ₹${e.amount}`)
+  .join("\n")}
 
-Question:
+User Question:
 ${question}
 
-Analyze the user's expenses and provide personalized advice.
-Answer in this format:
+Analyze the expense data and answer using this structure:
 
-• Key observation
+📊 Spending Analysis
+- Explain the key spending pattern.
 
-• Spending analysis
+💡 Recommendations
+- Give 2-4 actionable suggestions.
 
-• Actionable recommendation
+🎯 Conclusion
+- Summarize the financial situation.
 
-• Final conclusion
-
-Use Indian Rupees (₹).
+Keep the response under 150 words.
 Use proper bullet points.
-Keep response under 150 words.
+Do not mention JSON.
+Do not use any currency other than ₹.
 `;
 
 let answer = "";
