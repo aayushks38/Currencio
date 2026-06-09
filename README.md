@@ -173,7 +173,7 @@ EXPENSE-TRACKER
 ### Clone Repository
 
 ```bash
-git clone https://github.com/your-username/currencio.git
+git clone https://github.com/aayushks38/Currencio.git
 ```
 
 ### Navigate to Project
