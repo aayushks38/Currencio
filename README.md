@@ -87,7 +87,7 @@ The platform combines secure authentication, cloud-based storage, real-time expe
 
 ### AI Financial Assistant
 
-Currencio integrates Google's Gemini AI to help users better understand their finances.
+Currencio integrates AI-powered financial insights to help users better understand their finances.
 
 Capabilities include:
 
@@ -249,5 +249,5 @@ This project is licensed under the MIT License.
 ---
 
 <p align="center">
-  Built with React, Firebase, Firestore, Recharts, and Gemini AI
+  Built with React, Firebase, Firestore, Recharts, and Groq AI
 </p>

@@ -47,18 +47,19 @@ Question:
 ${question}
 
 Analyze the user's expenses and provide personalized advice.
+Answer in this format:
 
-Requirements:
-- Use ONLY Indian Rupees (₹).
-- Never use dollars ($).
-- Mention total spending.
-- Mention largest spending category.
-- Explain if the user is overspending.
-- Give actionable saving tips.
-- If a budget exists, compare spending against the budget.
-- Use numbers from the expense data.
-- Format using bullet points.
-- Maximum 250 words.
+• Key observation
+
+• Spending analysis
+
+• Actionable recommendation
+
+• Final conclusion
+
+Use Indian Rupees (₹).
+Use proper bullet points.
+Keep response under 150 words.
 `;
 
 let answer = "";

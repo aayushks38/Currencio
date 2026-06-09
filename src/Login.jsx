@@ -144,7 +144,7 @@ export default function Login({ setUser }) {
         <div className="hero-tags">
           <span>Budget Tracking</span>
           <span>Expense Analytics</span>
-          <span>Gemini AI</span>
+          <span>Currencio AI</span>
         </div>
       </div>
     </div>

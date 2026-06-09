@@ -652,11 +652,7 @@ const askAI = async () => {
 
           {aiResponse && (
           <div className="ai-response">
-            {aiResponse.split("*").map((item, index) =>
-              item.trim() ? (
-                <p key={index}>• {item.trim()}</p>
-              ) : null
-            )}
+            <pre>{aiResponse}</pre>
           </div>
         )}
         </section>
