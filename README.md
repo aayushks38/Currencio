@@ -201,7 +201,7 @@ npm run dev
 Create a `.env` file in the project root:
 
 ```env
-VITE_GROQ_API_KEY=YOUR_GROQ_API_KEY
+GROQ_API_KEY=YOUR_GROQ_API_KEY
 ```
 
 Firebase configuration is currently managed inside `src/firebase.js`.
