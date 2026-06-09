@@ -5,7 +5,6 @@
   <img src="https://img.shields.io/badge/Firebase-Authentication-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" />
   <img src="https://img.shields.io/badge/Firestore-Database-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" />
   <img src="https://img.shields.io/badge/Groq-LLM_Powered-F55036?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Currencio-AI_Assistant-6C63FF?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Currencio-AI_Assistant-6C63FF?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Recharts-Analytics-22C55E?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Vite-Build_Tool-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
@@ -65,6 +64,9 @@ The platform combines secure authentication, cloud-based storage, real-time expe
 * Category Selection
 * Date-Based Tracking
 * Real-Time Updates
+* Expense Categories
+* Monthly Expense History
+* Persistent Cloud Storage
 
 ### Budget Management
 
@@ -75,11 +77,12 @@ The platform combines secure authentication, cloud-based storage, real-time expe
 
 ### Analytics Dashboard
 
-* Total Monthly Spending
-* Transaction Count
-* Top Spending Category
-* Average Spending Analysis
-* Financial Insights
+* Total Expenses Overview
+* Monthly Budget Tracking
+* Category-wise Spending Analysis
+* Expense Distribution Insights
+* Spending Trend Visualization
+* AI-powered Financial Recommendations
 
 ### Data Visualization
 
@@ -89,7 +92,17 @@ The platform combines secure authentication, cloud-based storage, real-time expe
 
 ### AI Financial Assistant
 
-Currencio integrates AI-powered financial insights to help users better understand their finances.
+Powered by Groq Llama 3.3 70B.
+
+Capabilities include:
+
+* Expense Analysis
+* Budget Planning
+* Spending Optimization Tips
+* Overspending Detection
+* Personalized Financial Recommendations
+* Savings Suggestions
+* Natural Language Finance Queries
 
 Capabilities include:
 
@@ -144,8 +157,8 @@ EXPENSE-TRACKER
 │
 └── server/
     ├── index.js
-    ├── expenses.db
     └── package.json
+    └──.env
 ```
 
 ---
@@ -203,6 +216,10 @@ Create a `.env` file in the project root:
 
 ```env
 GROQ_API_KEY=YOUR_GROQ_API_KEY
+
+VITE_FIREBASE_API_KEY=YOUR_FIREBASE_API_KEY
+VITE_FIREBASE_AUTH_DOMAIN=...
+VITE_FIREBASE_PROJECT_ID=...
 ```
 
 Firebase configuration is currently managed inside `src/firebase.js`.
@@ -211,6 +228,14 @@ Firebase configuration is currently managed inside `src/firebase.js`.
 ---
 
 ## Screenshots
+<img width="1912" height="1198" alt="image" src="https://github.com/user-attachments/assets/1943391f-ea94-40fd-b7de-fc960a0cfd76" />
+<img width="1918" height="1198" alt="image" src="https://github.com/user-attachments/assets/f2644d79-5d09-4b1f-bea0-8232ac1b94c3" />
+<img width="1918" height="1198" alt="image" src="https://github.com/user-attachments/assets/516da3e1-ede6-436f-8121-b7d1c3f22f61" />
+<img width="1918" height="1198" alt="image" src="https://github.com/user-attachments/assets/f179fe7b-6696-4d1b-85a6-45f4c25350be" />
+
+
+
+
 
 Add screenshots of:
 
@@ -226,15 +251,18 @@ Add screenshots of:
 
 ## Future Roadmap
 
-* Export Expenses to CSV
 * Export Reports to PDF
 * Financial Goal Tracking
 * Advanced AI Insights
 * Recurring Expense Support
 * Multi-Currency Support
 * Production Deployment
+* Mobile App Version
+* Advanced AI Insights
 
 ---
+
+🌐 Live Demo: https://currencio-ebon.vercel.app
 
 ## Author
 
