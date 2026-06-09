@@ -11,7 +11,9 @@
   <img src="https://img.shields.io/badge/Status-Active_Development-success?style=for-the-badge" />
 </p>
 
-<h1 align="center">Currencio</h1>
+<p align="center">
+🌐 https://currencio-ebon.vercel.app
+</p>
 
 <p align="center">
   <strong>AI-Powered Personal Finance Dashboard</strong>
@@ -103,14 +105,6 @@ Capabilities include:
 * Personalized Financial Recommendations
 * Savings Suggestions
 * Natural Language Finance Queries
-
-Capabilities include:
-
-* Budgeting Suggestions
-* Spending Advice
-* Financial Guidance
-* Expense Analysis
-* Personal Finance Queries
 
 ### User Experience
 
@@ -223,29 +217,21 @@ VITE_FIREBASE_PROJECT_ID=...
 ```
 
 Firebase configuration is currently managed inside `src/firebase.js`.
-```
 
 ---
 
 ## Screenshots
+### Login Page
 <img width="1912" height="1198" alt="image" src="https://github.com/user-attachments/assets/1943391f-ea94-40fd-b7de-fc960a0cfd76" />
+
+### Dashboard Overview
 <img width="1918" height="1198" alt="image" src="https://github.com/user-attachments/assets/f2644d79-5d09-4b1f-bea0-8232ac1b94c3" />
+
+### Analytics Dashboard and AI Financial Assistant
 <img width="1918" height="1198" alt="image" src="https://github.com/user-attachments/assets/516da3e1-ede6-436f-8121-b7d1c3f22f61" />
+
+### Dark mode
 <img width="1918" height="1198" alt="image" src="https://github.com/user-attachments/assets/f179fe7b-6696-4d1b-85a6-45f4c25350be" />
-
-
-
-
-
-Add screenshots of:
-
-* Authentication Page
-* Dashboard Overview
-* Expense Management
-* Budget Tracking
-* Analytics Dashboard
-* AI Financial Assistant
-* Dark Mode Interface
 
 ---
 
@@ -253,16 +239,12 @@ Add screenshots of:
 
 * Export Reports to PDF
 * Financial Goal Tracking
-* Advanced AI Insights
 * Recurring Expense Support
 * Multi-Currency Support
 * Production Deployment
 * Mobile App Version
-* Advanced AI Insights
 
 ---
-
-🌐 Live Demo: https://currencio-ebon.vercel.app
 
 ## Author
 
