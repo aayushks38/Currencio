@@ -652,7 +652,7 @@ const askAI = async () => {
 
           {aiResponse && (
           <div className="ai-response">
-            <pre>{aiResponse}</pre>
+            <div>{aiResponse}</div>
           </div>
         )}
         </section>
