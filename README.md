@@ -34,7 +34,7 @@ The platform combines secure authentication, cloud-based storage, real-time expe
 
 * Secure Firebase Authentication
 * Cloud-based Firestore Database
-* AI Financial Assistant powered by Gemini
+* AI Financial Assistant powered by Groq
 * Monthly Budget Tracking
 * Expense Analytics Dashboard
 * Interactive Pie & Trend Charts
@@ -117,7 +117,7 @@ Capabilities include:
 | Styling            | CSS3                    |
 | Authentication     | Firebase Authentication |
 | Database           | Firebase Firestore      |
-| AI Integration     | Google Gemini API       |
+| AI Integration     | Groq API       |
 | Data Visualization | Recharts                |
 | Version Control    | Git & GitHub            |
 
@@ -200,7 +200,7 @@ npm run dev
 Create a `.env` file in the project root:
 
 ```env
-VITE_GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+VITE_GROQ_API_KEY=YOUR_GROQ_API_KEY
 ```
 
 Firebase configuration is currently managed inside `src/firebase.js`.
