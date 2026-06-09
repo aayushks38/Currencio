@@ -4,7 +4,8 @@
   <img src="https://img.shields.io/badge/React-Frontend-61DAFB?style=for-the-badge&logo=react&logoColor=white" />
   <img src="https://img.shields.io/badge/Firebase-Authentication-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" />
   <img src="https://img.shields.io/badge/Firestore-Database-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" />
-  <img src="https://img.shields.io/badge/Groq-AI_Assistant-F55036?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Groq-LLM_Powered-F55036?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Currencio-AI_Assistant-6C63FF?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Currencio-AI_Assistant-6C63FF?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Recharts-Analytics-22C55E?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Vite-Build_Tool-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
