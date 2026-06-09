@@ -651,10 +651,14 @@ const askAI = async () => {
             </button>
 
           {aiResponse && (
-            <div className="ai-response">
-              {aiResponse}
-            </div>
-          )}
+          <div className="ai-response">
+            {aiResponse.split("*").map((item, index) =>
+              item.trim() ? (
+                <p key={index}>• {item.trim()}</p>
+              ) : null
+            )}
+          </div>
+        )}
         </section>
     </div>
   );

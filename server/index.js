@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import rateLimit from "express-rate-limit";
+import Groq from "groq-sdk";
 
 dotenv.config();
 
@@ -10,12 +11,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-console.log(process.env.GEMINI_API_KEY);
-const genAI = new GoogleGenerativeAI(
-  process.env.GEMINI_API_KEY
-);
+const aiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10, 
+  message: {
+    error: "Too many AI requests. Please try again in 15 minutes.",
+  },
+});
 
-app.post("/ask-ai", async (req, res) => {
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY,
+});
+
+app.post("/ask-ai", aiLimiter, async (req, res) => {
   try {
     const {
       expenses,
@@ -25,14 +33,12 @@ app.post("/ask-ai", async (req, res) => {
 
     console.log("AI request received");
 
-    const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash",
-    });
-
 const prompt = `
-You are Currencio AI.
+You are Currencio AI, an expert personal finance advisor for users in India.
 
-Budget: ${budget}
+Currency: Indian Rupees (₹ / INR)
+
+Budget: ₹${budget}
 
 Expenses:
 ${JSON.stringify(expenses)}
@@ -40,34 +46,55 @@ ${JSON.stringify(expenses)}
 Question:
 ${question}
 
-Answer as a personal finance advisor.
-Keep answers under 4 bullet points.
-Be concise.
-Use simple language.
-Maximum 100 words.
+Analyze the user's expenses and provide personalized advice.
+
+Requirements:
+- Use ONLY Indian Rupees (₹).
+- Never use dollars ($).
+- Mention total spending.
+- Mention largest spending category.
+- Explain if the user is overspending.
+- Give actionable saving tips.
+- If a budget exists, compare spending against the budget.
+- Use numbers from the expense data.
+- Format using bullet points.
+- Maximum 250 words.
 `;
 
-      let result;
+let answer = "";
 
-    for (let i = 0; i < 3; i++) {
-      try {
-        result = await model.generateContent(prompt);
-        break;
-      } catch (err) {
-        if (err.status === 503 && i < 2) {
-          console.log("Gemini busy, retrying...");
-          await new Promise((resolve) =>
-            setTimeout(resolve, 2000)
-          );
-          continue;
-        }
-        throw err;
-      }
+for (let i = 0; i < 3; i++) {
+  try {
+    const completion =
+      await groq.chat.completions.create({
+        messages: [
+          {
+            role: "user",
+            content: prompt,
+          },
+        ],
+        model: "llama-3.3-70b-versatile",
+      });
+
+    answer =
+      completion.choices[0].message.content;
+
+    break;
+  } catch (err) {
+    if (err.status === 503 && i < 2) {
+      console.log("Groq busy, retrying...");
+      await new Promise((resolve) =>
+        setTimeout(resolve, 2000)
+      );
+      continue;
     }
+    throw err;
+  }
+}
 
-    res.json({
-      answer: result.response.text(),
-    });
+res.json({
+  answer,
+});
   } catch (error) {
   console.error("FULL ERROR:");
   console.error(error);
