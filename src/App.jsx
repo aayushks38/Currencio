@@ -71,7 +71,7 @@ const askAI = async () => {
   setLoadingAI(true);
 
   try {
-    const res = await fetch("http://localhost:5000/ask-ai", {
+    fetch("https://currencio-ai.onrender.com/ask-ai", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
