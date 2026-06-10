@@ -71,17 +71,20 @@ const askAI = async () => {
   setLoadingAI(true);
 
   try {
-    fetch("https://currencio-ai.onrender.com/ask-ai", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        expenses: filteredExpenses,
-        budget,
-        question,
-      }),
-    });
+    const res = await fetch(
+      "https://currencio-ai.onrender.com/ask-ai",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          expenses: filteredExpenses,
+          budget,
+          question,
+        }),
+      }
+    );
 
     const data = await res.json();
 
@@ -93,11 +96,7 @@ const askAI = async () => {
   } catch (err) {
     console.error("AI Error:", err);
     setAiResponse("❌ " + err.message);
-  } finally {
-    setLoadingAI(false);
   }
-};
-
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "light") setDarkMode(false);
