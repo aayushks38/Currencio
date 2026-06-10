@@ -96,7 +96,10 @@ const askAI = async () => {
   } catch (err) {
     console.error("AI Error:", err);
     setAiResponse("❌ " + err.message);
+  } finally {
+    setLoadingAI(false);
   }
+  };
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "light") setDarkMode(false);
@@ -139,7 +142,6 @@ const askAI = async () => {
 
   useEffect(() => {
     if (user) fetchExpenses();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const addExpense = async () => {
